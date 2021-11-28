@@ -3,10 +3,19 @@ function getRandomInt(min, max) {
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
 }
-
+let player = {
+  name: 'Mira',
+  chips: 100
+}
+document.getElementById('player-el').textContent = player.name + ': ' + player.chips
 let sum
 
 let startGame = () => {
+  if (player.chips < 20){
+    document.getElementById("message-el").textContent ='you dont have more point to play, sorry.'
+    return true
+  }
+  player.chips -= 20
   let firstCard = getRandomInt(2,12)
   let secondCard = getRandomInt(2,12)
   sum = firstCard + secondCard
@@ -19,6 +28,7 @@ let startGame = () => {
 
 let result = ()=> {
   document.getElementById("sum-el").textContent = "sum: " + sum
+  document.getElementById('player-el').textContent = player.name + ': ' + player.chips
   if (sum <= 20) message = 'do you want to draw a new card?'
   else if (sum === 21) {
     message = 'congratulations! you won.'
