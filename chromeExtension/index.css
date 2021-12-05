@@ -2,8 +2,6 @@ body{
   margin: 0;
   padding: 10px;
   font-family: Arial, Helvetica, sans-serif;
-  display: flex;
-  flex-direction: column;
   min-width: 400px;
 }
 input{
@@ -19,12 +17,17 @@ button{
   padding: 5px;
   background-color: #5f9341;
   color: white;
-  border: none;
+  border: 1px solid #5f9341;
   width: 20%;
   margin-top: 5px;
   font-size: large;
   font-weight: bold;
   text-transform: uppercase;
+  cursor: pointer;
+}
+#delete-btn{
+  color: #5f9341;
+  background-color: white;
 }
 
 ul{
