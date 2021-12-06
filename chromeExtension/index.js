@@ -5,6 +5,7 @@ let inputEl = document.getElementById('input-el')
 let ulEl = document.getElementById('ul-el')
 let inputBtn = document.getElementById('input-btn')
 let deleteBtn = document.getElementById('delete-btn')
+const saveTabsBtn = document.getElementById('saveTabs-btn')
 
 let renderList = () => {
   let list = ''
@@ -12,7 +13,6 @@ let renderList = () => {
   ulEl.innerHTML = list
 }
 let save = ()=> {
-  console.log(myLeads)
   myLeads.push(inputEl.value)
   inputEl.value = ''
   localStorage.setItem("myLeads", JSON.stringify(myLeads))
@@ -23,6 +23,14 @@ let deleteAll = () => {
   myLeads = []
   renderList()
 }
+const saveTabs = () => {
+  chrome.tabs.query({active: true, currentWindow:true}, function(tabs){
+    myLeads.push(tabs[0].url)
+    localStorage.setItem("myLeads", JSON.stringify(myLeads))
+    renderList()
+  })
+}
 renderList()
 inputBtn.addEventListener('click', save);
 deleteBtn.addEventListener('dblclick', deleteAll)
+saveTabsBtn.addEventListener('click', saveTabs)
